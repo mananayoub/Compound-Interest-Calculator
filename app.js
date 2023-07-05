@@ -5,9 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
   var totalInvestmentOutput = document.getElementById('totalInvestment');
   var currencySelect = document.getElementById('currencySelect');
   var currencyIcon = document.getElementById('currencyIcon');
+// Get the range input and the tooltip element
+const rangeInput = document.getElementById("investmentRange");
+const rangeTooltip = document.getElementById("rangeTooltip");
+
+// Display initial tooltip value
+rangeTooltip.textContent = rangeInput.value;
+
+// Update tooltip value on range input change
+rangeInput.addEventListener("input", function() {
+  rangeTooltip.textContent = this.value;
+});
+
+  // Pre-fill the input with default value
+  investmentAmountInput.value = "10,000";
 
   function calculate() {
-    var amount = parseFloat(investmentAmountInput.value);
+    var amount = parseFloat(investmentAmountInput.value.replace(/,/g, ''));
     var rate = 1.35; // 1.35% interest per month
     var months = parseInt(investmentRangeInput.value); // Get the selected range value
 
@@ -19,13 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
       totalProfit += interest;
 
       if (i === parseInt(investmentRangeInput.value)) {
-        interestHTML += `${interest.toFixed(2)} ${currencySelect.value}</p>`;
+        interestHTML += `${interest.toFixed(3)} ${currencySelect.value}</p>`;
       }
     }
 
     // Update the result display elements
     interestContainer.innerHTML = interestHTML;
-    totalInvestmentOutput.textContent = (totalProfit - amount).toFixed(2);
+    totalInvestmentOutput.textContent = (totalProfit - amount).toFixed(3) + ` ${currencySelect.value}`;
+  }
+
+  function formatCurrencyInput() {
+    var value = investmentAmountInput.value.replaceAll(',', '');
+    // Restrict the input to 6 digits
+    value = value.slice(0, 6);
+    var formattedValue = Number(value).toLocaleString('en-US');
+    investmentAmountInput.value = formattedValue;
   }
 
   // Calculate when the button is clicked
@@ -34,6 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Calculate when the input or range value changes
   investmentAmountInput.addEventListener('input', calculate);
   investmentRangeInput.addEventListener('input', calculate);
+
+  investmentAmountInput.addEventListener('input', function() {
+    setTimeout(formatCurrencyInput, 10);
+  });
+  
 
   function updateCurrencySymbol() {
     var selectedCurrency = currencySelect.value;

@@ -5,230 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Satoshi+Variable&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Satoshi Variable', sans-serif;
-      }
-      .container {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #f5f7fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  color: #0a0a0a;
-  padding: 20px;
-}
-
-.container > *:first-child {
-  width: 75%;
-}
-
-.container > *:nth-child(2) {
-  width: 25%;
-  background-color: #00663c;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-}
-
-.number-text {
-  font-size: 24px;
-  margin: 10px 0;
-  text-transform: uppercase;
-  color: white;
-}
-
-.number-small-text {
-  font-size: 14px;
-  color: white;
-  opacity: 0.8;
-}
-
-.range-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 32px;
-}
-
-.range-labels {
-  display: flex;
-  justify-content: space-between;
-  width: 120%;
-  margin-top: 8px;
-}
-
-.rangeClass {
-  width: 100%;
-  accent-color: #00663c;
-}
-
-.range-label {
-  font-size: 12px;
-  width: calc(100% / 5);
-  text-align: center;
-}
-
-.input-container {
-  flex: 1;
-  padding: 20px;
-}
-
-.input-container label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-}
-
-.input-group input {
-  width: 100%;
-  height: 40px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-}
-
-.input-group input[type="number"]:focus,
-.input-group input[type="range"]:focus {
-  outline-color: #00663c;
-  outline-width: 2px;
-  outline-style: solid;
-}
-
-.input-group select {
-  height: 40px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
-  appearance: none;
-  background: url("dropdown-arrow.png") no-repeat right center;
-  background-size: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.input-group select:focus {
-  outline: none;
-  border-color: #00663c;
-}
-
-.currency-select {
-  display: flex;
-  align-items: center;
-}
-
-.currency-icon {
-  margin-left: 5px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.currency-icon::before {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.currency-icon[data-currency="btc"]::before {
-  background-image: url(path/to/btc-icon.png);
-}
-
-.currency-icon[data-currency="usdt"]::before {
-  background-image: url(path/to/usdt-icon.png);
-}
-
-.currency-icon[data-currency="eth"]::before {
-  background-image: url(path/to/eth-icon.png);
-}
-
-/* Add styles for other currency options */
-
-#calculateButton {
-  display: block;
-  font-size: 11px !important;
-  margin-top: 20px;
-  padding: 12px 24px;
-  border: none;
-  background-color: #00663c;
-  color: white;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-#calculateButton:hover {
-  background-color: #005636;
-}
-
-#calculateButton:focus {
-  outline: none;
-}
-
-.output-section {
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.output-container {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="input-container">
           <label for="investmentAmount">Amount</label>
           <div class="input-group">
-            <input type="number" id="investmentAmount" placeholder="Enter amount" />
+            <input type="text" id="investmentAmount" placeholder="Enter amount" />
             <div class="currency-select">
-              <select id="currencySelect">
-                <option value="usdt">USDT</option>
-                <option value="btc">BTC</option>
-                <option value="eth">ETH</option>
-                <option value="busd">BUSD</option>
-                <option value="sol">SOL</option>
-                <option value="ada">ADA</option>
-                <option value="link">LINK</option>
-                <option value="bnb">BNB</option>
-                <option value="near">NEAR</option>
-                <option value="matic">MATIC</option>
-                <option value="xrp">XRP</option>
-                <option value="dot">DOT</option>
-              </select>
-              <!-- <span class="currency-icon" id="currencyIcon"></span> -->
+              <div class="select-wrapper">
+                <select id="currencySelect">
+                  <option value="usdt">USDT</option>
+                  <option value="btc">BTC</option>
+                  <option value="eth">ETH</option>
+                  <option value="busd">BUSD</option>
+                  <option value="sol">SOL</option>
+                  <option value="ada">ADA</option>
+                  <option value="link">LINK</option>
+                  <option value="bnb">BNB</option>
+                  <option value="near">NEAR</option>
+                  <option value="matic">MATIC</option>
+                  <option value="xrp">XRP</option>
+                  <option value="dot">DOT</option>
+                </select>
+                <div class="arrow-down"></div>
+              </div>
             </div>
+            
           </div>
-          <div class="range-container">
-            <label for="months">Months</label>
-            <input type="range" id="investmentRange" min="0" max="36" step="1" class="rangeClass"/>
-            <div class="range-labels">
-              <div class="range-label">0</div>
-              <div class="range-label">12</div>
-              <div class="range-label">24</div>
-              <div class="range-label">36</div>
+          <div>
+            <label for="months" class="monthLabel">Months</label>
+            <div class="range-container">
+              <input type="range" id="investmentRange" min="0" max="36" step="1" class="rangeClass"/>
+              <div class="tooltip">
+                <span id="rangeTooltip">0</span>
+              </div>
+              <div class="range-labels">
+                <div class="range-label">0</div>
+                <div class="range-label">12</div>
+                <div class="range-label">24</div>
+                <div class="range-label">36</div>
+              </div>
             </div>
           </div>
           <button id="calculateButton">Calculate</button>
@@ -236,127 +54,16 @@
       
         <div class="output-section">
           <div class="output-container">
+            <span class="number-small-text">Profit per month</span>
               <h3 id="interestContainer" class="number-text">0</h3>
-              <span class="number-small-text">Profit per month</span>
           </div>
           <div class="output-container">
+            <span class="number-small-text">Total Profit</span>
               <h3 id="totalInvestment" class="number-text">0</h3>
-              <span class="number-small-text">Total Profit</span>
           </div>
         </div>
       </div>     
       
     </body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var investmentAmountInput = document.getElementById('investmentAmount');
-        var investmentRangeInput = document.getElementById('investmentRange');
-        var interestContainer = document.getElementById('interestContainer');
-        var totalInvestmentOutput = document.getElementById('totalInvestment');
-        var currencySelect = document.getElementById('currencySelect');
-        var currencyIcon = document.getElementById('currencyIcon');
-
-        function calculate() {
-          var amount = parseFloat(investmentAmountInput.value);
-          var rate = 1.35; // 1.35% interest per month
-          var months = parseInt(investmentRangeInput.value); // Get the selected range value
-
-          var interestHTML = '';
-          var totalProfit = amount; // Initialize total profit variable
-
-          for (var i = 1; i <= months; i++) {
-            var interest = totalProfit * (rate / 100);
-            totalProfit += interest;
-
-            if (i === parseInt(investmentRangeInput.value)) {
-              interestHTML += `${interest.toFixed(2)} ${currencySelect.value}</p>`;
-            }
-          }
-
-          // Update the result display elements
-          interestContainer.innerHTML = interestHTML;
-          totalInvestmentOutput.textContent = (totalProfit - amount).toFixed(2);
-        }
-
-        // Calculate when the button is clicked
-        document.getElementById('calculateButton').addEventListener('click', calculate);
-
-        // Calculate when the input or range value changes
-        investmentAmountInput.addEventListener('input', calculate);
-        investmentRangeInput.addEventListener('input', calculate);
-
-        function updateCurrencySymbol() {
-          var selectedCurrency = currencySelect.value;
-          var currencySymbol = '';
-
-          switch (selectedCurrency) {
-            case 'btc':
-              currencySymbol = '₿';
-              break;
-            case 'usdt':
-              currencySymbol = '$';
-              break;
-            case 'eth':
-              currencySymbol = 'Ξ';
-              break;
-            case 'busd':
-              currencySymbol = 'BUSD';
-              break;
-            case 'sol':
-              currencySymbol = 'SOL';
-              break;
-            case 'ada':
-              currencySymbol = 'ADA';
-              break;
-            case 'link':
-              currencySymbol = 'LINK';
-              break;
-            case 'bnb':
-              currencySymbol = 'BNB';
-              break;
-            case 'near':
-              currencySymbol = 'NEAR';
-              break;
-            case 'matic':
-              currencySymbol = 'MATIC';
-              break;
-            case 'xrp':
-              currencySymbol = 'XRP';
-              break;
-            case 'dot':
-              currencySymbol = 'DOT';
-              break;
-            default:
-              currencySymbol = '';
-              break;
-          }
-
-          investmentAmountInput.setAttribute('data-currency-symbol', currencySymbol);
-          updateCurrencyInput();
-        }
-
-        function updateCurrencyInput() {
-          var currencySymbol = investmentAmountInput.getAttribute('data-currency-symbol');
-          investmentAmountInput.setAttribute('placeholder', 'Enter amount in ' + currencySymbol);
-        }
-
-        currencySelect.addEventListener('change', function() {
-          updateCurrencySymbol();
-          currencyIcon.style.display = "none"; // Hide currency icon
-        });
-
-        investmentRangeInput.addEventListener('input', function() {
-          if (investmentAmountInput.value === "") {
-            interestContainer.innerHTML = "";
-            totalInvestmentOutput.textContent = "0";
-          } else {
-            calculate();
-          }
-        });
-
-        // Initial update
-        updateCurrencySymbol();
-      });
-
-    </script>
+    <script src="app.js"></script>
 </html>

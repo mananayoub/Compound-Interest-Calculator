@@ -1,5 +1,5 @@
 .container {
-  max-width: 600px;
+  max-width: 675px;
   margin: 0 auto;
   background-color: #f5f7fa;
   border-radius: 8px;
@@ -14,7 +14,7 @@
 }
 
 .container > *:nth-child(2) {
-  width: 25%;
+  width: 31%;
   background-color: #00663c;
   padding: 20px;
   display: flex;
@@ -26,7 +26,7 @@
 
 .number-text {
   font-size: 24px;
-  margin: 10px 0;
+  margin: 6px 0;
   text-transform: uppercase;
   color: white;
 }
@@ -43,6 +43,7 @@
   align-items: center;
   margin-top: 32px;
 }
+
 
 .range-labels {
   display: flex;
@@ -73,7 +74,9 @@
   margin-bottom: 10px;
   color: #555;
 }
-
+.monthLabel{
+  margin-top: 16px;
+}
 .input-group {
   display: flex;
   align-items: center;
@@ -98,6 +101,7 @@
 
 .input-group select {
   height: 40px;
+  width: 74px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -182,4 +186,77 @@
 .output-container {
   margin-bottom: 20px;
   text-align: center;
+}
+
+.currency-select {
+  position: relative;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 8px 24px 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+  cursor: pointer;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #333;
+}
+/* Tooltip styles */
+.tooltip {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+.range-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.range-container {
+  position: relative;
 }
